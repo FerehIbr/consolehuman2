@@ -25,7 +25,6 @@ namespace ConsoleApp1
         }
         public Department(string name, int workerlimit, int salarylimit, Employee[] employee)
         {
-
             Employees = new Employee[0];
             Name = name;
             Workerlimit = workerlimit;

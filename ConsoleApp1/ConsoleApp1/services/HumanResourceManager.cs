@@ -13,33 +13,31 @@ namespace ConsoleApp1
         {
             _departments = new Department[0];
         }
+        //public void AddDepartment(string name, int workerlimit, int SalaryLimit)
+        //{
+        //    Department department = new Department(name, workerlimit, SalaryLimit);
 
-        public void AddDepartment(string name, int workerlimit, int SalaryLimit)
-        {
-            Department department = new Department(name, workerlimit, SalaryLimit);
-
-            Array.Resize(ref _departments, _departments.Length + 1);
-            _departments[_departments.Length - 1] = department;
-        }
-        public bool Checkname(string str)
-        {
-            if (!string.IsNullOrEmpty(str))
-            {
-                if (Char.IsUpper(str[0]))
-                {
-                    foreach (var chr in str)
-                    {
-                        if (char.IsLetter(chr) == false)
-                        {
-                            return false;
-                        }
-                    }
-                    return true;
-                }
-            }
-            return false;
-        }
-
+        //    Array.Resize(ref _departments, _departments.Length + 1);
+        //    _departments[_departments.Length - 1] = department;
+        //}
+        //public bool Checkname(string str)
+        //{
+        //    if (!string.IsNullOrEmpty(str))
+        //    {
+        //        if (Char.IsUpper(str[0]))
+        //        {
+        //            foreach (var chr in str)
+        //            {
+        //                if (char.IsLetter(chr) == false)
+        //                {
+        //                    return false;
+        //                }
+        //            }
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
         public void AddEmployee(string Name, string position, double salary, string departmentName)
         {
             Employee employee = new Employee(Name,position,salary,departmentName);
@@ -64,15 +62,28 @@ namespace ConsoleApp1
                 }
             }
         }
-        public void EditEmploye(string no, string Name, double Salary, string Position)
+        public void EditEmploye(string no, string name, double salary, string position)
         {
-            throw new NotImplementedException();
+            Employee employee = null;
+            foreach (Department item in _departments)
+            {
+                foreach (Employee item1 in item.Employees)
+                {
+                    if (item1.No==no)
+                    {
+                        employee = item1;
+                        return;
+                    }
+                    employee.Name = name;
+                    employee.Salary = salary;
+                    employee.Position = position;
+                }
+            }
         }
-        public void GetDepartments(Department[] departments)
+        public void GetDepartments()
         {
-            throw new NotImplementedException();
-        }
 
+        }
         public void RemoveEmployee(string no, string Name)
         {
             foreach (Department item in _departments)
@@ -81,16 +92,36 @@ namespace ConsoleApp1
                 {
                     if (item.Employees[i].No==no)
                     {
-                        item.Employees = null;
+                        item.Employees[i] = null;
                         return;
                     }
                 }
             }
         }
-
-        internal void AddDepartment(string name, object workerlimit, string salaryLimit)
+        public void AddDepartment(string name, int workerlimit, int SalaryLimit)
         {
-            throw new NotImplementedException();
+            Department department = new Department(name, workerlimit, SalaryLimit);
+
+            Array.Resize(ref _departments, _departments.Length + 1);
+            _departments[_departments.Length - 1] = department;
+        }
+        public bool Checkname(string str)
+        {
+            if (!string.IsNullOrEmpty(str))
+            {
+                if (Char.IsUpper(str[0]))
+                {
+                    foreach (var chr in str)
+                    {
+                        if (char.IsLetter(chr) == false)
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

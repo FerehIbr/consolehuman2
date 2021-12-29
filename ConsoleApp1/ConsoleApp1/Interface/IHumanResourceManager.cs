@@ -10,7 +10,7 @@ namespace ConsoleApp1
         //Employees[] employees { get; }
         //List<Department> Departments { get; set; }
         void AddDepartment(string name, int workerlimit, int SalaryLimit);
-        void GetDepartments(Department[] departments);
+        //void GetDepartments(Department[] departments);
         void EditDepartaments(string name, string newname);
         void AddEmployee(string Name, string position, double salary, string departmentName);
         void RemoveEmployee(string no, string Name);
